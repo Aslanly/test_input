@@ -1,0 +1,16 @@
+
+
+.task {
+    background-color: rgba(225, 229, 237, 0.526);
+    /* border: 1mm solid rgba(45, 145, 203, 0.4); */
+    border-radius: 12px;
+    max-width: 900px;
+    padding: 10px 0px 10px 25px;
+    font-size: 34px;
+    text-align: center;
+    margin: 0px auto;
+    margin-bottom: 20px;
+    color:  rgba(14, 52, 219, 0.758);
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.ButtonGroup {
+    cursor: pointer;
+    text-align: center;
+    margin: 30px 0px 30px 0px;
+}
+
+.Button {
+    font-size: 24px;
+}
+
+

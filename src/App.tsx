@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Modal from './component/modal/modal';
+import ModalStore from './store/store';
+import { observer } from 'mobx-react-lite';
+import Button from '@mui/material/Button';
+import GetTaskList from './component/taskList/TaskList';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 function App() {
+
+  const { isOpen, openModal } = ModalStore;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='ButtonGroup'>
+        <ButtonGroup variant="text" aria-label="text button group">
+          <Button onClick={() => { openModal(true) }}><div className='Button'>НОВАЯ ЗАДАЧА</div></Button>
+          <Button><div className='Button'>АКТИВНЫЕ</div></Button>
+          <Button><div className='Button'>ВСЕ ЗАДАЧИ</div></Button>
+        </ButtonGroup>
+      </div>
+      <GetTaskList />
+      <div>
+        {isOpen && <Modal />}
+      </div>
     </div>
   );
+
 }
 
-export default App;
+export default observer(App);
