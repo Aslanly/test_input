@@ -4,30 +4,35 @@ import { observer } from 'mobx-react-lite';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './tasks.css';
 import { Button } from "@mui/material";
+import Checkbox from '@mui/material/Checkbox';
 
 
 const GetTaskList = () => {
 
-    const { taskList, loadFromLocalStoreg } = ModalStore
-
-    useEffect(() => {
-        loadFromLocalStoreg()
-    }, [])
+    const { taskList, saveToLocalStoreg, getFromLocalStoreg, changeStatusTask } = ModalStore
 
     const handleRemove = (id: number) => {
         ModalStore.removeItemById(id)
+        saveToLocalStoreg()
     };
+
+    useEffect(() => {
+        getFromLocalStoreg()
+    }, []) 
 
     return (
         <div className="Container_tasks">
             {taskList.map((task) => (
                 <div className="task" key={task.id}>
                     <div>{task.text}</div>
-                    <Button onClick={() => handleRemove(task.id)}><DeleteIcon /></Button>
+                    <div>
+                        <Checkbox />
+                        <Button onClick={() => handleRemove(task.id)}><DeleteIcon /></Button>
+                    </div>
                 </div>
             ))}
         </div>
     )
-}
 
+}
 export default observer(GetTaskList);

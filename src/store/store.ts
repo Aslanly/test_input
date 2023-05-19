@@ -1,8 +1,10 @@
+
 import { makeAutoObservable } from 'mobx';
 
 interface Task {
     id: number;
     text: string;
+    status: boolean;
 }
 
 class ModalStore {
@@ -37,16 +39,23 @@ class ModalStore {
     }
 
     saveToLocalStoreg = () => {
-        localStorage.setItem('tasklist', JSON.stringify(this.taskList));
+        localStorage.setItem('taskList', JSON.stringify(this.taskList));
+
     }
 
-    loadFromLocalStoreg = () => {
+    getFromLocalStoreg = () => {
         const storedTasks = localStorage.getItem('taskList');
         if (storedTasks) {
             this.taskList = JSON.parse(storedTasks);
-        }
+        };
     }
 
+    changeStatusTask = (id:number) => {
+        const todo = this.taskList.find((item) => item.id !== id);
+        if (todo) {
+            todo.status = true;
+        }
+    }
 }
 
 export default new ModalStore();

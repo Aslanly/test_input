@@ -15,9 +15,9 @@ function App() {
     <div className="App">
       <div className='ButtonGroup'>
         <ButtonGroup variant="text" aria-label="text button group">
-          <Button onClick={() => { openModal(true) }}><div className='Button'>НОВАЯ ЗАДАЧА</div></Button>
           <Button><div className='Button'>АКТИВНЫЕ</div></Button>
           <Button><div className='Button'>ВСЕ ЗАДАЧИ</div></Button>
+          <Button onClick={() => { openModal(true) }}><div className='Button'>НОВАЯ ЗАДАЧА</div></Button>
         </ButtonGroup>
       </div>
       <GetTaskList />

@@ -4,17 +4,13 @@ import { observer } from 'mobx-react-lite';
 import './modal.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { keyboardKey } from "@testing-library/user-event";
 
 
 
 const Modal = () => {
 
-  const { closeModal, isOpen, changeInput, addTodo, todoValue, loadFromLocalStoreg, saveToLocalStoreg } = ModalStore;
+  const { closeModal, isOpen, changeInput, addTodo, todoValue, saveToLocalStoreg } = ModalStore;
 
-  useEffect(() => {
-    loadFromLocalStoreg()
-  }, [])
 
   const hendleClosModal = (e: any) => {
     closeModal(false);
@@ -33,9 +29,10 @@ const Modal = () => {
       addTodo({
         id: Math.random(),
         text: todoValue.trim(),
+        status: false,
       });
-      saveToLocalStoreg()
     }
+    saveToLocalStoreg()
     changeInput('');
   };
 
@@ -61,7 +58,7 @@ const Modal = () => {
           variant="filled"
           value={todoValue}
           onChange={hendleChangeInput}
-          onKeyDown={handleKeyDown}
+          onKeyUpCapture={handleKeyDown}
           onKeyUp={handleKeyDownEsc}
         />
         <Button onClick={handleAddClick}>Добавить</Button>
