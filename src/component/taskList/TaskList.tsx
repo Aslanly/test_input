@@ -18,7 +18,11 @@ const GetTaskList = () => {
 
     useEffect(() => {
         getFromLocalStoreg()
-    }, []) 
+    }, [])
+
+    const handleCheckboxChange = (id: number) => {
+        changeStatusTask(id);
+    };
 
     return (
         <div className="Container_tasks">
@@ -26,7 +30,7 @@ const GetTaskList = () => {
                 <div className="task" key={task.id}>
                     <div>{task.text}</div>
                     <div>
-                        <Checkbox />
+                        <Checkbox onChange={() => handleCheckboxChange(task.id)}/>
                         <Button onClick={() => handleRemove(task.id)}><DeleteIcon /></Button>
                     </div>
                 </div>

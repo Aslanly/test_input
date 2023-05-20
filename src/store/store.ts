@@ -5,9 +5,12 @@ interface Task {
     id: number;
     text: string;
     status: boolean;
+    isChecked: boolean;
 }
 
 class ModalStore {
+
+    showActive: boolean = false;
 
     todoValue: string = '';
     isOpen = false;
@@ -50,12 +53,16 @@ class ModalStore {
         };
     }
 
-    changeStatusTask = (id:number) => {
-        const todo = this.taskList.find((item) => item.id !== id);
-        if (todo) {
-            todo.status = true;
+    changeStatusTask = (id: number) => {
+        const task = this.taskList.find((item) => item.id === id);
+        if (task) {
+            task.isChecked = !task.isChecked;
+            console.log(task.isChecked)
         }
-    }
+        this.saveToLocalStoreg();
+    };
+
+
 }
 
 export default new ModalStore();
