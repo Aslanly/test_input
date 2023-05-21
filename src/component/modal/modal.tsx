@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 
 const Modal = () => {
 
-  const { closeModal, isOpen, changeInput, addTodo, todoValue, saveToLocalStoreg, showActive } = ModalStore;
+  const { closeModal, isOpen, changeInput, addTodo, todoValue, saveToLocalStoreg } = ModalStore;
 
 
   const hendleClosModal = (e: any) => {
@@ -28,8 +28,7 @@ const Modal = () => {
     if (todoValue.trim()) {
       addTodo({id: Math.random(),
         text: todoValue.trim(),
-        status: false,
-        isChecked:false,
+        isChecked: false,
       });
     }
     saveToLocalStoreg()

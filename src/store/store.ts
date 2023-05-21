@@ -4,13 +4,12 @@ import { makeAutoObservable } from 'mobx';
 interface Task {
     id: number;
     text: string;
-    status: boolean;
     isChecked: boolean;
 }
 
 class ModalStore {
 
-    showActive: boolean = false;
+    isChecked = false;
 
     todoValue: string = '';
     isOpen = false;
@@ -53,15 +52,20 @@ class ModalStore {
         };
     }
 
+    getFromLocalStoregValueCheckbox = () => {
+        const storedCheckbox = localStorage.getItem('checkbox');
+        if (storedCheckbox !== null) {  
+            this.isChecked = JSON.parse(storedCheckbox);
+        } 
+    }
+
     changeStatusTask = (id: number) => {
         const task = this.taskList.find((item) => item.id === id);
         if (task) {
             task.isChecked = !task.isChecked;
-            console.log(task.isChecked)
+            this.saveToLocalStoreg();
         }
-        this.saveToLocalStoreg();
     };
-
 
 }
 
