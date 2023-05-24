@@ -29,6 +29,7 @@ const Modal = () => {
       addTodo({id: Math.random(),
         text: todoValue.trim(),
         isChecked: false,
+        activeButton: 'active',
       });
     }
     saveToLocalStoreg()

@@ -9,7 +9,7 @@ import Checkbox from '@mui/material/Checkbox';
 
 const GetTaskList = () => {
 
-    const { taskList, saveToLocalStoreg, getFromLocalStoreg, changeStatusTask, getFromLocalStoregValueCheckbox, isChecked } = ModalStore
+    const { taskList, saveToLocalStoreg, getFromLocalStoreg, changeStatusTask, getFromLocalStoregValueCheckbox, filteredTaskList, changeActiveButton } = ModalStore
 
     const handleRemove = (id: number) => {
         ModalStore.removeItemById(id)
@@ -17,8 +17,9 @@ const GetTaskList = () => {
     };
 
     useEffect(() => {
-        getFromLocalStoreg()
-        getFromLocalStoregValueCheckbox()
+        getFromLocalStoreg();
+        getFromLocalStoregValueCheckbox();
+        changeActiveButton('active');
     }, [])
 
     const handleCheckboxChange = (id: number) => {
@@ -27,15 +28,17 @@ const GetTaskList = () => {
 
     return (
         <div className="Container_tasks">
-            {taskList.map((task) => (
-                <div className="task" key={task.id}>
-                    <div>{task.text}</div>
-                    <div>
-                        <Checkbox checked={task.isChecked} onChange={() => handleCheckboxChange(task.id)} />
-                        <Button onClick={() => handleRemove(task.id)}><DeleteIcon /></Button>
+            {
+                filteredTaskList.map((task) => (
+                    <div className="task" key={task.id}>
+                        <div>{task.text}</div>
+                        <div>
+                            <Checkbox checked={task.isChecked} onChange={() => handleCheckboxChange(task.id)} />
+                            <Button onClick={() => handleRemove(task.id)}><DeleteIcon /></Button>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))
+            }
         </div>
     )
 
